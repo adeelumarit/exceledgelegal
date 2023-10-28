@@ -180,31 +180,63 @@
 
     </div>
 
-    <div ng-hide="wordMainDiv" class="center-container">
-        <md-button ng-click="getFilebase64()">
-            <div style="text-align: center;">
-                <img style="height: 40px;" src="https://adeelumarit.github.io/exceledgelegal/ExcelFileConverterWeb/Images/wordlogo.png" />
-                <br /> <!-- Add a line break to move the text below the image -->
-                Save As Word
-            </div>
-        </md-button>
-        <!--<md-button ng-click="open($event)">model</md-button>-->
-        <md-button ng-click="GetFileAsPDF('PDF')">
-            <div style="text-align: center;">
-                <img style="height: 40px;" src="https://adeelumarit.github.io/exceledgelegal/ExcelFileConverterWeb/Images/pdflogo.png" />
-                <br /> <!-- Add a line break to move the text below the image -->
-                Save As PDF
-            </div>
-        </md-button>
+
+
+    <div ng-hide="wordMainDiv" style=" margin-top: 30%; ">
+
+        <!--<div layout="column" style="padding: 8px; margin-top: 12px;">-->
+
+
+
+
+        <div layout="flex" layout-align="center center" style=" padding: 5px;">
+
+            <md-button ng-click="getFilebase64()">
+                <div style="text-align: center;">
+                    <img style="height: 40px;" src="https://adeelumarit.github.io/exceledgelegal/ExcelFileConverterWeb/Images/wordlogo.png" />
+                    <br /> <!-- Add a line break to move the text below the image -->
+                    Save As Word
+                </div>
+            </md-button>
+            <!--<md-button ng-click="open($event)">model</md-button>-->
+            <md-button ng-click="GetFileAsPDF('PDF')">
+                <div style="text-align: center;">
+                    <img style="height: 40px;" src="https://adeelumarit.github.io/exceledgelegal/ExcelFileConverterWeb/Images/pdflogo.png" />
+                    <br /> <!-- Add a line break to move the text below the image -->
+                    Save As PDF
+                </div>
+            </md-button>
+
+
+        </div>
+
+
+
+        <!--<div layout="column" layout-align="center center" style=" padding: 5px;">
+
+            <md-button style="width: 90%; min-width: 100px; background: #338146; color: white; border: 3px; border-radius: 10px; " ng-click="getbase()">
+
+                Mater Number
+            </md-button>
+        </div>-->
+        <!--</div>-->
+
+
     </div>
+
+
+    <!--<div  class="center-container">
+
+    </div>-->
 
 </body>
 </html>
 <style>
 
     #Matter {
-        outline:none
+        outline: none
     }
+
         #Matter:focus {
             outline: none;
             border: solid #338146 2px
@@ -241,7 +273,7 @@
         border-radius: 5px;
         padding: 20px;
     }
-   /* md-button:disabled{
+    /* md-button:disabled{
         background-color:red
 
     }*/
