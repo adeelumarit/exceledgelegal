@@ -50,8 +50,8 @@ app.controller('edgelegalctrl', function ($scope, $mdDialog, $mdToast, $log, $lo
 
                 ProgressLinearInActive();
 
-                loadtost("word addin is wroking ")
-                loadtost("no functioanlities included yet")
+                loadToast("word addin is wroking ")
+                loadToast("no functioanlities included yet")
 
             }
 
