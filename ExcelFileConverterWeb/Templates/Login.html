@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            padding: 27px;
+            width: 68%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px 8px 8px 40px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .icon {
+            position: absolute;
+            top: 69%;
+            transform: translateY(-50%);
+            left: 10px;
+            color: #aaa;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .checkbox-group label {
+                margin-top: 5px;
+                font-size: 13px;
+                margin-left: 5px;
+            }
+
+        .btn {
+            background-color: #1E4D57;
+            color: white;
+            width: 100%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn i {
+                margin-right: 5px;
+            }
+
+
+
+        .button-3 {
+            appearance: none;
+            background-color: rgb(63,81,181);
+            border: 1px solid rgba(27, 31, 35, .15);
+            border-radius: 6px;
+            box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            padding: 6px 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+            .button-3:focus:not(:focus-visible):not(.focus-visible) {
+                box-shadow: none;
+                outline: none;
+            }
+
+            .button-3:hover {
+                background-color: rgb(63,81,181);
+            }
+
+            .button-3:focus {
+                box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+                outline: none;
+            }
+
+            .button-3:disabled {
+                background-color: #94d3a2;
+                border-color: rgba(27, 31, 35, .1);
+                color: rgba(255, 255, 255, .8);
+                cursor: default;
+            }
+
+            .button-3:active {
+                background-color: rgb(44 58 135);
+                box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+            }
+
+        #username {
+            outline: none
+        }
+
+            #username:focus {
+                outline: none;
+                border: solid rgb(63,81,181) 2px
+            }
+
+        #password {
+            outline: none
+        }
+
+            #password:focus {
+                outline: none;
+                border: solid rgb(63,81,181) 2px
+            }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <i class="fas fa-user icon"></i>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <i class="fas fa-key icon"></i>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div id="errorMessage" class="hidden" style="background:red;color:white">
+                <p>An error occurred. Please try again.</p>
+            </div>
+        </form>
+        <div style="text-align: center;">
+            <button class="button-3" id="loginButton">Login</button>
+            <span style="margin: 0 10px;"></span>
+            <button onclick="cancel()" class="button-3" id="cancelButton">Cancel</button>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<script>
+
+    Office.onReady(function (appInfo) {
+        // Your Office Add-in is now ready
+        // You can call your functions or perform any actions here
+        //click_button(); 
+        //cancel();
+    });
+
+    let objmessage = {
+        login: false,
+        username: ""
+    }
+
+    $(document).ready(function () {
+        // Add a click event handler to the button
+        $("#loginButton").click(function () {
+
+      
+   // function click_button() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        console.log('Username:', username);
+        console.log('Password:', password);
+        //formdata.append("userName", "testuser10@gmail.com");
+        //formdata.append("password", "Confront10");
+
+        var formdata = new FormData();
+        formdata.append("userName", username);
+        formdata.append("password", password);
+
+        var settings = {
+            "url": "https://grazingdelights.com.au/LPDM/RT/WS/login",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Cookie": "JSESSIONID=8B0DA6584FAA2363944D8697EF347597.tc-node1"
+            },
+            "processData": false,
+            "contentType": false, // Change this to false to prevent jQuery from setting a content type
+            "data": formdata
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+            objmessage.login = true;
+            objmessage.username = username
+             //       objmessage = {
+
+             //          login: true,
+             //          username: username
+             //};
+           Office.context.ui.messageParent(JSON.stringify(objmessage));
+        }).fail(function (xhr, status, error) {
+            console.log(error)
+        });
+       
+       
+         //   }
+
+        })
+    })
+   
+    function cancel() {
+        objmessage.login=false
+        Office.context.ui.messageParent(JSON.stringify(objmessage));
+
+    }
+
+
+</script>

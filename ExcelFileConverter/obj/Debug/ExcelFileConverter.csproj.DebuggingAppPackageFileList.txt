@@ -1,0 +1,2 @@
+bin\Debug\OfficeAppManifests\EdgeLegalExcelManifest.xml
+C:\Users\Asif computer\Desktop\WORD\ExcelFileConverter\bin\Debug\ExcelFileConverter.debugapp

@@ -1,0 +1,270 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            padding: 27px;
+            width: 68%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px 8px 8px 40px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .icon {
+            position: absolute;
+            top: 69%;
+            transform: translateY(-50%);
+            left: 10px;
+            color: #aaa;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .checkbox-group label {
+                margin-top: 5px;
+                font-size: 13px;
+                margin-left: 5px;
+            }
+
+        .btn {
+            background-color: #1E4D57;
+            color: white;
+            width: 100%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn i {
+                margin-right: 5px;
+            }
+
+
+
+        .button-3 {
+            appearance: none;
+            background-color: rgb(63,81,181);
+            border: 1px solid rgba(27, 31, 35, .15);
+            border-radius: 6px;
+            box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            padding: 6px 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+            .button-3:focus:not(:focus-visible):not(.focus-visible) {
+                box-shadow: none;
+                outline: none;
+            }
+
+            .button-3:hover {
+                background-color: rgb(63,81,181);
+            }
+
+            .button-3:focus {
+                box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+                outline: none;
+            }
+
+            .button-3:disabled {
+                background-color: #94d3a2;
+                border-color: rgba(27, 31, 35, .1);
+                color: rgba(255, 255, 255, .8);
+                cursor: default;
+            }
+
+            .button-3:active {
+                background-color: rgb(44 58 135);
+                box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+            }
+
+        #matternumber {
+            outline: none
+        }
+
+            #matternumber:focus {
+                outline: none;
+                border: solid rgb(63,81,181) 2px
+            }
+
+        #filename {
+            outline: none
+        }
+
+        #filename:focus {
+            outline: none;
+            border: solid rgb(63,81,181) 2px
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload to Matter</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="matternumber">Matter ID </label>
+                <!--<i class="fas fa-user icon"></i>-->
+                <input type="text" id="matternumber" name="matternumber" required>
+            </div>
+            <div class="form-group">
+                <label for="filename">File Name</label>
+                <!--<i class="fas fa-key icon"></i>--> 
+                <input type="text" id="filename" name="filename" required>
+            </div>
+
+
+        </form>
+        <div style="text-align: center;">
+            <button onclick="click_button()" class="button-3" id="loginButton">Upload</button>
+            <span style="margin: 0 10px;"></span>
+            <button onclick="cancel()" class="button-3" id="cancelButton">Cancel</button>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<script>
+
+    Office.onReady(function (appInfo) {
+        // Your Office Add-in is now ready
+        // You can call your functions or perform any actions here
+        //click_button();
+        //cancel();
+    });
+
+    var file = document.getElementById('filename');
+
+    // Get the current URL
+    var currentUrl = window.location.href;
+
+    // Parse the URL to extract query parameters
+    var urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+
+    // Get the value of the 'matterId' query parameter
+    var workbookName = urlParams.get('workbookName');
+
+    // Now, 'matterId' contains the value of the 'matterId' query parameter
+    console.log("workbookName:", workbookName);
+    //let filedataa = window.localStorage.getItem("filedata")
+
+    //filedataa = JSON.parse(filedataa);
+
+    //console.log(filedataa)
+
+    file.value = workbookName;
+    //file.value = filedataa.fileName;
+
+
+    function click_button() {
+        var matternumber = document.getElementById('matternumber').value;
+        var filename = document.getElementById('filename').value;
+
+      
+
+        if (matternumber && filename) {
+            console.log('Success: Logged in');
+            var objmessage = {
+                matternumber: matternumber,
+                fileInputStream: "ccc",
+                originalName: filename,
+                contentDispositionHeader: filename,
+            };
+
+
+
+        
+
+            Office.context.ui.messageParent(JSON.stringify(objmessage));
+        } else {
+            console.log('Error: Authentication failed. Please check your credentials.');
+        }
+    }
+
+    function cancel() {
+
+
+        let objmessage = {
+
+            close: true
+
+        }
+        Office.context.ui.messageParent(JSON.stringify(objmessage));
+
+    }
+
+
+</script>
+
+
+
